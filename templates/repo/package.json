@@ -1,0 +1,35 @@
+{
+  "name": "[app]",
+  "private": true,
+  "packageManager": "npm@11.14.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "dev:web": "npm run dev --workspace=@app/web",
+    "dev:admin": "npm run dev --workspace=@app/admin",
+    "screenshots": "node tools/screenshots.mjs",
+    "test": "turbo run test",
+    "security:secrets": "node tools/security/scan-secrets.mjs --tree",
+    "security:audit": "node tools/security/audit.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "playwright": "^1.62.1",
+    "turbo": "^2.0.9"
+  },
+  "dependencies": {
+    "@neon/config": "^1.0.5"
+  },
+  "overrides": {
+    "postcss": "^8.5.26",
+    "sharp": "^0.35.4",
+    "drizzle-orm": "^0.45.2",
+    "next": {
+      "postcss": "^8.5.26"
+    }
+  }
+}

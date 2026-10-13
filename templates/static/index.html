@@ -1,0 +1,20 @@
+<!doctype html>
+<!--
+  Root redirect for a static prototype repo whose main file has a name with spaces.
+  The static host answers 404 NOT_FOUND when there is no index.html at the root (Assemble
+  wireframes, 2026-07-14). Keep the prototype's real filename; add this 10-line file.
+  Cache-buster query so reviewers never see a stale build.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="refresh" content="0; url=[App]%20-%20Prototype.html?v=1">
+  <title>[App]</title>
+  <style>body{margin:0;background:#0F111F;color:#F4F8FC;font:15px system-ui;display:grid;place-items:center;min-height:100vh}a{color:inherit}</style>
+</head>
+<body>
+  <p>Opening the prototype… <a href="[App]%20-%20Prototype.html?v=1">Open it</a></p>
+  <script>location.replace("[App]%20-%20Prototype.html?v=" + Date.now());</script>
+</body>
+</html>

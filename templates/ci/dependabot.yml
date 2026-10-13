@@ -1,0 +1,25 @@
+# Weekly dependency updates for the whole workspace (the root lockfile covers apps/* and packages/*).
+# Minor and patch bumps arrive as one grouped pull request; majors come on their own.
+# Copy to .github/dependabot.yml. Also turn on "Dependabot alerts" and "automated security fixes"
+# in the repo settings (or via the API) — GitHub's own secret scanning is paid on private repos,
+# so the secrets scanner in tools/security covers that instead.
+#
+# Two side effects seen on Assemble:
+#  - Dependabot's own update runs show on the same commit as CI — watch the CI workflow BY NAME.
+#  - Dependabot branches can fill the hosting build queue so `main` does not auto-deploy;
+#    trigger the deployment through the API (templates/deploy/trigger-deploy.mjs).
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "[Europe/London]"
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+    commit-message:
+      prefix: "deps"

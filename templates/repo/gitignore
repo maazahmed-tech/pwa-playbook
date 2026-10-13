@@ -1,0 +1,31 @@
+# build and tool output
+node_modules/
+.next/
+.turbo/
+dist/
+out/
+*.tsbuildinfo
+
+# secrets — every env file, every branch env file, the Neon link file
+.env
+.env.*
+!.env.example
+.neon
+ci-branch.env
+.env.ci-backend
+
+# local verification output
+screenshots/
+test-results/
+playwright-report/
+
+# generated marketing assets and their credentials file
+tools/marketing/out/
+
+# local editor / assistant settings (permission allow-lists, dev server)
+.claude/
+.agents/
+
+# OS
+.DS_Store
+Thumbs.db

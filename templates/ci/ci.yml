@@ -1,0 +1,77 @@
+# GitHub Actions CI for a Turborepo app on a dedicated Neon CI branch.
+# Copy to .github/workflows/ci.yml. Pushing this file needs a GitHub token WITH the `workflow` scope
+# (Assemble's first PAT lacked it, so CI changes were routed through next.config.mjs for weeks).
+#
+# Secrets to set on the repo (all pointing at the CI branch, never production):
+#   DATABASE_URL, AUTH_SECRET, ADMIN_PASSWORD, ADMIN_SESSION_SECRET,
+#   AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_ENDPOINT_URL_S3, AWS_REGION
+# Set them on day one of a new repo — a copied workflow with no secrets fails on every commit.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# One run at a time: the e2e suite resets and mutates the shared CI database.
+# Two overlapping runs collide (one run changes a test account's password mid-run).
+concurrency:
+  group: ci-database
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Security gates first: they are fast and a hit should stop everything.
+      - name: Secret scan (working tree)
+        run: npm run security:secrets
+
+      - name: Dependency audit (high and critical)
+        run: npm run security:audit
+
+      - name: Unit & component tests (Vitest)
+        run: npm run test --workspace=@app/web
+
+      - name: Build all apps
+        run: npx turbo run build
+
+      # Full chromium (not the headless shell): the camera specs need getUserMedia.
+      - name: Install Playwright browser
+        run: npx playwright install chromium --with-deps
+
+      # DB-backed specs run against the dedicated Neon CI branch (its own copy-on-write
+      # database AND bucket) so CI never touches production or staging data.
+      # Without the secrets they self-skip and only static specs run.
+      - name: End-to-end tests (Playwright)
+        run: npx playwright test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          ADMIN_SESSION_SECRET: ${{ secrets.ADMIN_SESSION_SECRET }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          AUTH_TRUST_HOST: "true"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL_S3: ${{ secrets.AWS_ENDPOINT_URL_S3 }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+
+      - name: Upload e2e traces on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces
+          path: test-results/
+          retention-days: 7
