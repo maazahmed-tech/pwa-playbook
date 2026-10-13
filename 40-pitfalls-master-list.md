@@ -1,6 +1,6 @@
 # 40 — Pitfalls master list
 
-Part of the Assemble replication guide. Index: [00-index.md](00-index.md). Each milestone chapter has its own short pitfalls box; this is the complete, de-duplicated list from every phase (9 Jul – 17 Sep 2026), grouped by area. Each entry: **Symptom → Cause → Fix → Prevention → chapter**.
+Part of the PWA Playbook. Index: [00-index.md](00-index.md). Each milestone chapter has its own short pitfalls box; this is the complete, de-duplicated list from every phase (9 Jul – 17 Sep 2026), grouped by area. Each entry: **Symptom → Cause → Fix → Prevention → chapter**.
 
 Groups: A access and tokens · B git and GitHub · C Vercel, deploys and DNS · D email, OAuth and third-party consoles · E Neon, database and migrations · F tests and CI · G Windows, shell and tooling · H single-file prototypes · I design and asset pipeline · J PWA, phones and Samsung · K 3D · L AI engines · M product and data truth · N security · O sessions, process and working with Claude · P landing page and performance.
 

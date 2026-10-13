@@ -1,6 +1,6 @@
 # 20 — Security
 
-Part of the Assemble replication guide. Index: [00-index.md](00-index.md). Related chapters: [03-services-setup.md](03-services-setup.md) (where each key is created), [14-backend.md](14-backend.md) (where these controls are built), [21-testing.md](21-testing.md) (the tests that prove them), [40-pitfalls-master-list.md](40-pitfalls-master-list.md).
+Part of the PWA Playbook. Index: [00-index.md](00-index.md). Related chapters: [03-services-setup.md](03-services-setup.md) (where each key is created), [14-backend.md](14-backend.md) (where these controls are built), [21-testing.md](21-testing.md) (the tests that prove them), [40-pitfalls-master-list.md](40-pitfalls-master-list.md).
 
 This chapter has two halves that are easy to confuse, so read the first paragraph of each:
 

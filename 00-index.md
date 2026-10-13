@@ -1,4 +1,4 @@
-# Build a new app the Assemble way — the playbook
+# PWA Playbook — build a new app the Assemble way
 
 This folder is a step-by-step guide for building a **new app** with the same tools, the same milestones and the same working method that produced Assemble (an AI outfit-matching PWA built by Deep Learn HQ between July and September 2026). It is written for two readers at once:
 
@@ -152,7 +152,7 @@ This mirrors what grew organically on Assemble, cleaned up. One folder per miles
 └── Project History/
     ├── export-history.mjs        ← chat exporter (templates/archive/export-history.mjs)
     ├── chats/                    ← secret-masked Markdown archive of every session
-    └── replication-guide/        ← this guide (or the next app's copy of it)
+    └── pwa-playbook/             ← this playbook (or the next app's copy of it)
 ```
 
 **Why separate repos per milestone:** the wireframe and UI prototypes are client deliverables that must stay exactly as approved; the frontend repo becomes a frozen backup of production; the backend repo starts with a single clean commit so its history carries no experiments and no AI attribution.

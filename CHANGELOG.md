@@ -1,6 +1,10 @@
-# Changelog — the Assemble replication guide
+# Changelog — the PWA Playbook
 
 Add an entry after every batch until the project is finalised (payments live, production cutover done, landing page on the domain). Newest entry first. Keep the same rules as the guide: no secrets, no client name, money in dollars, no running costs.
+
+## 2026-10-13 — Renamed
+
+- The guide is now the **PWA Playbook** (it was "the Assemble replication guide"), published on GitHub as `pwa-playbook`. Chapter text is unchanged; `_source-notes/` keep the old name because they quote the sessions as they happened.
 
 ## 2026-09-26 — Who a product is for, and what a person already owns
 

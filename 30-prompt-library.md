@@ -1,6 +1,6 @@
 # 30 — Prompt library
 
-Part of the Assemble replication guide. Index: [00-index.md](00-index.md). How the sessions were run: [01-running-the-sessions.md](01-running-the-sessions.md) and [02-how-we-work.md](02-how-we-work.md). Milestone chapters: [10-prebuild.md](10-prebuild.md), [11-wireframes.md](11-wireframes.md), [12-ui.md](12-ui.md), [13-fullstack-frontend.md](13-fullstack-frontend.md), [14-backend.md](14-backend.md), [15-payments-and-cutover.md](15-payments-and-cutover.md), [16-growth.md](16-growth.md). Security: [20-security.md](20-security.md). Testing: [21-testing.md](21-testing.md).
+Part of the PWA Playbook. Index: [00-index.md](00-index.md). How the sessions were run: [01-running-the-sessions.md](01-running-the-sessions.md) and [02-how-we-work.md](02-how-we-work.md). Milestone chapters: [10-prebuild.md](10-prebuild.md), [11-wireframes.md](11-wireframes.md), [12-ui.md](12-ui.md), [13-fullstack-frontend.md](13-fullstack-frontend.md), [14-backend.md](14-backend.md), [15-payments-and-cutover.md](15-payments-and-cutover.md), [16-growth.md](16-growth.md). Security: [20-security.md](20-security.md). Testing: [21-testing.md](21-testing.md).
 
 Every reusable prompt from the Assemble chats (9 Jul – 17 Sep 2026), grouped by milestone and activity. For each one you get:
 
@@ -63,7 +63,7 @@ Read [HANDOFF.md / README / main files] thoroughly and understand the project fi
 **Original (written 20 Aug 2026 into `UI-Build-Playbook.md` §12, used in a separate session for another app):** "Read UI-Build-Playbook.md in this folder fully — it defines our process, architecture, design system, pipelines, and pitfalls. My proposal for the new app is <path/file>. The brand assets are <paths, or "none — run the brand Q&A first">. The GitHub repo is <owner/repo>; Vercel auto-deploys main. Start Phase 1: read the proposal and give me the screen inventory, roles, flows, and monetization map. Then run the Phase 2 decision round — ask at least 30 questions, one at a time, multiple choice, recommended option highlighted. Don't build until I say go."
 **Template (for this guide):**
 ```
-Read [00-index.md] and the chapter for [milestone] in this replication guide fully. My proposal for the new app is [path]. Brand assets: [paths | none — run the brand question round first]. Repo: [owner/repo]; Vercel auto-deploys main. Start with [phase 1 output], then run the decision round: ask at least [30] questions, one at a time, multiple choice, recommended option highlighted. Don't build until I say go.
+Read [00-index.md] and the chapter for [milestone] in this PWA Playbook fully. My proposal for the new app is [path]. Brand assets: [paths | none — run the brand question round first]. Repo: [owner/repo]; Vercel auto-deploys main. Start with [phase 1 output], then run the decision round: ask at least [30] questions, one at a time, multiple choice, recommended option highlighted. Don't build until I say go.
 ```
 
 ### 1.3 Hand over a handoff document before a new repo or session

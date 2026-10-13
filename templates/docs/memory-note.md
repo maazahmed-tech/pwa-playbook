@@ -24,7 +24,7 @@ metadata:
 - `money-in-dollars` (feedback) — write $0.17, never cents; the user finds cents confusing.
 - `batchN-decisions` — the answers of a question round, so a new session can read them instead of re-asking.
 - `[app]-project` — the running build log: what shipped, pending items, next phase.
-- `replication-guide-task` — a pending task with its trigger ("after batch 3, ask 15 questions first").
+- `playbook-task` — a pending task with its trigger ("after batch 3, ask 15 questions first").
 
 ## MEMORY.md index line
 `- [Title]([kebab-case-name].md) — one-line description with the verification step`

@@ -1,6 +1,6 @@
 # 21 — Testing and verification
 
-Part of the Assemble replication guide. Index: [00-index.md](00-index.md). Related: [20-security.md](20-security.md) (the attack suite and scan gates), [13-fullstack-frontend.md](13-fullstack-frontend.md) and [14-backend.md](14-backend.md) (where the suites are built), [01-running-the-sessions.md](01-running-the-sessions.md) (durations, background runs), [40-pitfalls-master-list.md](40-pitfalls-master-list.md) (section F).
+Part of the PWA Playbook. Index: [00-index.md](00-index.md). Related: [20-security.md](20-security.md) (the attack suite and scan gates), [13-fullstack-frontend.md](13-fullstack-frontend.md) and [14-backend.md](14-backend.md) (where the suites are built), [01-running-the-sessions.md](01-running-the-sessions.md) (durations, background runs), [40-pitfalls-master-list.md](40-pitfalls-master-list.md) (section F).
 
 The user's standing sentence for this chapter, said on 9 Sep 2026 when Claude proposed a manual test script instead: *"for testing we should use the Playwright e2e three-pyramid verification system we have. remember?"* Every change to the app, however small, goes through the same bar. This chapter explains that bar in plain words, gives the real configuration and commands, and covers the earlier prototype stage where the "tests" were browser scripts on a single HTML file.
 
