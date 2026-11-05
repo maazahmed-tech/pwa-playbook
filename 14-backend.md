@@ -166,6 +166,39 @@ From push A onward, every batch ran as a scripted workflow (see `templates/workf
 - **Render layering fix (17 Sep, `db4225c`)**: a rulebook (no two base tops; layer order stated; the avatar photo used only for face, hair, body and pose — accessories worn in the photo removed unless in the outfit) with server-side removal, a post-render check and a free redraw. Built **directly by Claude without a workflow**, with **targeted tests only** ("don't play the whole 2.5-hour suite"): typecheck, the relevant unit tests, the match/render/swap spec files, one real paid render on staging (about $0.17), full suite left to CI.
 - **Demo profile hygiene (13 Sep)**: renamed to a neutral identity with a reserved-domain email; the nightly reset writes the identity itself (otherwise it restores the old name); credentials no longer prefilled on login; the demo entry hidden at `/demo` and compiled in only where `NEXT_PUBLIC_DEMO_LOGIN=1`.
 
+## Step 10a — Bulk import of a client's old files (spreadsheets)
+
+Most office apps start by swallowing years of spreadsheets the client already has (one workbook per member, per file, per account). The import is the first thing the client's admin does in the app, so it sets their trust in every figure after it. Build it as a product screen, not a script. Pattern from a housing-society office app (Nov 2026), which replaced a "drop 20 files, hope" uploader after the client said errors were unclear:
+
+**1. Check before saving.** Adding files runs a read-only pre-check; nothing is written until one button says "Import N files".
+- Browser checks first, listed under "Not added" with a plain reason: not an Excel file, Excel's `~$` temp files, 0 KB, over the size cap (5 MB), and the same file added twice (name + size).
+- Server pre-check, a few files per call, one verdict each: **ready**, **already in the system, same sheet** (left out), **already in the system, different version** (offer "replace the imported file", unticked), **pick one** (two different sheets claim the same record number — radios, nothing picked by default, the import button stays off until every clash is picked), **cannot read** (with what to do: "open in Excel, save as .xlsx, add it again"). Identical copies under different names are recognised by content hash and counted once.
+- The settings the whole upload needs (here: plot size, the month a monthly charge starts) sit in one collapsed line above the drop zone: "Plot size 120 sq yd · charged from Jan 2010 · Change".
+
+**2. Import one file per server call, three at a time.** One bad sheet never stops the others, and results land as they happen.
+- A quiet retry once per file, then a per-file "Try again".
+- Progress bar with counts per outcome, the files in flight, time left from the average so far, a `beforeunload` warning, "Stop after the current files" and "Import the remaining N".
+- One admin notification at the end with the totals, not one per file.
+
+**3. Each file is one transaction.** Record, people, charges, payments, the original file row and its review items commit together or not at all; a failure writes only a "not imported" row with the reason. Keep every original file (bytes + sha256 + which record it made) so any figure can be traced back, and so "same sheet again" is told from "a corrected version".
+
+**4. Undo and replace, guarded.** Undo shows counts first (charges, payments and their total, open checks), then removes everything the sheet brought in, in one transaction, audited, keeping the original marked "undone". Replace is undo + import in one step, the old original marked "replaced". Both are **refused once the office has worked on the record** (a new receipt, a transfer, a manual charge, an approval, a certificate) — the refusal names what was done and says to fix it on the record instead.
+
+**5. Results the admin can act on.** Four outcomes only: Imported · Imported, N to check · Already in the system · Not imported. Problems sort first; filter tabs; a sub-line with the name, how many payments and the start month; a finish card with "Start checking", "Try again" and a CSV of the results.
+
+**6. A review queue grouped by file, worst first.** Every doubtful thing the importer met is a stored item with a type, a severity (**blocked** — not imported; **money** — may change what is owed; **detail**) and the raw details as JSON. The screen builds the words from the details at render time, in every UI language, as three parts: **title** (what happened, with the amount), **why it matters**, **what to do**. Old items without details fall back to the stored English line.
+- "Looks right" with an optional note, then a 6-second "Marked as checked · Undo" toast. **The toast must live at page level** (listen for a custom event): the checked item leaves the list on revalidate and unmounts, taking any toast inside it with it.
+- Inline fixes where the fix is one value (a missing ID number typed straight in, validated and refused if another person already has it); "Open file" for the rest.
+- "Mark all on this page as checked" only for **detail** types — money items are checked one by one.
+- "See the row in the sheet": a viewer that renders the original from the stored bytes, **highlights the exact cell** from the item's cell reference and scrolls to it both ways (ledgers often sit to the right of the visible columns; highlighting the row alone pointed at the wrong block), plus "Download original".
+- To check / Done tabs, This import / All imports, 25 files per page, a Past imports card, empty states that say what to do next.
+
+**7. Words the admin never sees.** Write the list into the spec and test it: skipped, failed, batch, parse, cell, label, booked, allocation, issue, bare internal codes, ISO months, raw exceptions. Replacements: "Already in the system", "Not imported", "things to check", "charge name", "put under", "Looks right". A raw server error becomes "a problem while saving; nothing was saved. Try again."
+
+**8. Tests.** Golden import of the real sample sheets (balances unchanged); each pre-check verdict; importing the same sheet twice leaves one copy; undo allowed (and the file importable again afterwards) and undo refused after office work; replace swaps originals in one step; every item type renders a non-empty title / why / what-to-do in every language; the banned-words check over the English texts. Then drive the screens with real files plus a text file, an empty file, a damaged file and a modified copy, and read every screenshot.
+
+Gotchas met on the way: pitfalls F46–F48.
+
 ## Step 11 — Documents this milestone must leave behind
 
 - `LAUNCH-READINESS.md` — every gap, decision, status, proving test; sections added per round.

@@ -2,6 +2,11 @@
 
 Add an entry after every batch until the project is finalised (payments live, production cutover done, landing page on the domain). Newest entry first. Keep the same rules as the guide: no secrets, no client name, money in dollars, no running costs.
 
+## 2026-11-05 — Bulk import of a client's old spreadsheets
+
+- `14-backend.md` Step 10a: the import as a product screen — check before saving (browser checks and server verdicts: ready, already in with the same sheet or a different version, pick one, cannot read), one file per call three at a time with retry, progress, time left, stop and resume, each file one transaction with its original kept by hash, undo and replace refused once the office has worked on the record, four plain outcomes, a review queue grouped by file with title / why / what to do in every language, a page-level Undo toast, inline fixes, bulk only for low-risk items, an original-sheet viewer that highlights the exact cell, a banned-words list, and the tests that prove it.
+- `40-pitfalls-master-list.md`: F46 (server action body limit), F47 (parallel PGlite test packages crash; `--concurrency=1`), F48 (`--passWithNoTests`).
+
 ## 2026-10-13 — Renamed
 
 - The guide is now the **PWA Playbook** (it was "the Assemble replication guide"), published on GitHub as `pwa-playbook`. Chapter text is unchanged; `_source-notes/` keep the old name because they quote the sessions as they happened.

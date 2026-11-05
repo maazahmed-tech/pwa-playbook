@@ -172,7 +172,7 @@ This mirrors what grew organically on Assemble, cleaned up. One folder per miles
 | [11-wireframes.md](11-wireframes.md) | Proposal critique, the greyscale single-file prototype, coverage matrix, presenter script, client revision rounds. |
 | [12-ui.md](12-ui.md) | Brand restyle, asset briefs and the "you generate, Claude wires" pipeline, icons, motion, data-driven screens. |
 | [13-fullstack-frontend.md](13-fullstack-frontend.md) | Monorepo scaffold, design system port, database and seeds, auth, CRUD, admin, storage, first paid engine, PWA, tests and CI, deploy to domain. |
-| [14-backend.md](14-backend.md) | Staging environment, real AI features, "no fakes" launch-readiness rounds, security round, admin operations, cutover rehearsal. |
+| [14-backend.md](14-backend.md) | Staging environment, real AI features, "no fakes" launch-readiness rounds, security round, admin operations, bulk import of old spreadsheets, cutover rehearsal. |
 | [15-payments-and-cutover.md](15-payments-and-cutover.md) | Stripe plan and what exists today; client key handover; the cutover runbook; rollback. |
 | [16-growth.md](16-growth.md) | Launch landing page, AI cost ledger method and the always-in-profit credit pricing formula, marketing proposal. |
 | [20-security.md](20-security.md) | The 20-point review, attack suite, rate limits, secrets scanning, dependency gate, privacy by design. |
