@@ -7,6 +7,13 @@ Add an entry after every batch until the project is finalised (payments live, pr
 - `14-backend.md` Step 10a: the import as a product screen — check before saving (browser checks and server verdicts: ready, already in with the same sheet or a different version, pick one, cannot read), one file per call three at a time with retry, progress, time left, stop and resume, each file one transaction with its original kept by hash, undo and replace refused once the office has worked on the record, four plain outcomes, a review queue grouped by file with title / why / what to do in every language, a page-level Undo toast, inline fixes, bulk only for low-risk items, an original-sheet viewer that highlights the exact cell, a banned-words list, and the tests that prove it.
 - `40-pitfalls-master-list.md`: F46 (server action body limit), F47 (parallel PGlite test packages crash; `--concurrency=1`), F48 (`--passWithNoTests`).
 
+## 2026-11-05 — Rebuilding a paused project from its archive
+
+- New living chapter [05-rebuild-from-archive.md](05-rebuild-from-archive.md) (milestone R): for a project that already went through proposal, wireframes and UI and then paused. The 23-question intake round and the answers that held, a five-call scouting step before any agents, the folder layout, and the "latest statement wins, superseded rows kept, extras tagged" ledger rule.
+- New template `templates/workflows/archive-research-workflow.js`: Gmail in three date slices, Drive transcripts, Drive documents and assets, and GitHub run in parallel, followed by one ledger agent and one completeness critic.
+- Pitfalls so far: search by the client's email address, not their name (spam shares first names); take the client's spelling from their own mail header; confirm the mailbox and GitHub account rather than trusting memory; link recordings rather than downloading them; never copy credential screenshots; keep client identifiers out of this public guide.
+- Gates 1–3, the UI refinement round and the local build will be added to the chapter as they happen.
+
 ## 2026-10-13 — Renamed
 
 - The guide is now the **PWA Playbook** (it was "the Assemble replication guide"), published on GitHub as `pwa-playbook`. Chapter text is unchanged; `_source-notes/` keep the old name because they quote the sessions as they happened.

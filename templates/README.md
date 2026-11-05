@@ -25,6 +25,7 @@ How the chapters use these files: `02-how-we-work.md` (CLAUDE.md, prompts, brief
 | File | What it is |
 |---|---|
 | `workflows/batch-workflow.js` | Data → parallel Build → Tests → adversarial Review → fix loop (max 2 rounds). |
+| `workflows/archive-research-workflow.js` | Archive rebuild sweep: 3 Gmail slices + Drive transcripts + Drive docs + GitHub → requirements ledger → completeness critic ([05-rebuild-from-archive.md](../05-rebuild-from-archive.md)). |
 | `workflows/fix-loop-workflow.js` | Fix confirmed defects → one clean full run → re-review. |
 | `workflows/README.md` | The rules that made them work and the other shapes used. |
 
