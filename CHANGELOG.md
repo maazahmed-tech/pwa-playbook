@@ -2,6 +2,11 @@
 
 Add an entry after every batch until the project is finalised (payments live, production cutover done, landing page on the domain). Newest entry first. Keep the same rules as the guide: no secrets, no client name, money in dollars, no running costs.
 
+## 2026-11-06 — Archive rebuild: Gates 1 and 2
+
+- `05-rebuild-from-archive.md` Step 4 (Gate 1): write the digest yourself and delegate the spec list (with a script check that every ledger ID appears). Ask decisions in plain English with "did the client pay for this?" shown beside each. Batch the small ones as defaults. Put a "decisions (final)" table at the top of the spec that overrides the agent's defaults.
+- Step 5 (Gate 2): one shared sample brief, one agent per direction in parallel, a comparison page with "building" states and an embed mode that hides each sample's own toolbar, contact-sheet review, a list of invented copy for sign-off. Pitfall: point playwright-core at the cached headless-shell build when the CLI refuses a version mismatch.
+
 ## 2026-11-05 — Bulk import of a client's old spreadsheets
 
 - `14-backend.md` Step 10a: the import as a product screen — check before saving (browser checks and server verdicts: ready, already in with the same sheet or a different version, pick one, cannot read), one file per call three at a time with retry, progress, time left, stop and resume, each file one transaction with its original kept by hash, undo and replace refused once the office has worked on the record, four plain outcomes, a review queue grouped by file with title / why / what to do in every language, a page-level Undo toast, inline fixes, bulk only for low-risk items, an original-sheet viewer that highlights the exact cell, a banned-words list, and the tests that prove it.
