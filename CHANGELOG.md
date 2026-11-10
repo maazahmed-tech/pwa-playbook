@@ -2,6 +2,10 @@
 
 Add an entry after every batch until the project is finalised (payments live, production cutover done, landing page on the domain). Newest entry first. Keep the same rules as the guide: no secrets, no client name, money in dollars, no running costs.
 
+## 2026-11-10 — Archive rebuild: first verification merge and the fixed demo address
+
+- `40-pitfalls-master-list.md`: C17 (a per-deploy alias stays behind Deployment Protection; use a project domain for anything a scheduler calls), C18 (repo variables are read when a run starts), G21 (never `source` a dotenv file; parse it).
+
 ## 2026-11-09 — Archive rebuild: Gate 3, the online build and account switches
 
 - `05-rebuild-from-archive.md` Step 6: one plan approval and then no "next batch?" questions; separate the environment section so a local-to-online pivot rewrites one part; owner-run clipboard one-liners for keys; a database branch for agents; a handover pack for Claude account switches; per-account permission differences; free-tier arithmetic before recommending a scheduler.
