@@ -2,6 +2,11 @@
 
 Add an entry after every batch until the project is finalised (payments live, production cutover done, landing page on the domain). Newest entry first. Keep the same rules as the guide: no secrets, no client name, money in dollars, no running costs.
 
+## 2026-11-09 — Archive rebuild: Gate 3, the online build and account switches
+
+- `05-rebuild-from-archive.md` Step 6: one plan approval and then no "next batch?" questions; separate the environment section so a local-to-online pivot rewrites one part; owner-run clipboard one-liners for keys; a database branch for agents; a handover pack for Claude account switches; per-account permission differences; free-tier arithmetic before recommending a scheduler.
+- `40-pitfalls-master-list.md`: C13–C16 (Vercel Hobby: author-blocked deploys, public main domains, daily-only crons, monorepo install command), E25 (agents migrating shared branches), F49–F51 (build-time Google Fonts, CI test timeouts, sleeping Macs), O16–O17 (account handovers, "free" schedules).
+
 ## 2026-11-06 — Archive rebuild: Gates 1 and 2
 
 - `05-rebuild-from-archive.md` Step 4 (Gate 1): write the digest yourself and delegate the spec list (with a script check that every ledger ID appears). Ask decisions in plain English with "did the client pay for this?" shown beside each. Batch the small ones as defaults. Put a "decisions (final)" table at the top of the spec that overrides the agent's defaults.

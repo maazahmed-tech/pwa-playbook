@@ -55,6 +55,10 @@ Groups: A access and tokens · B git and GitHub · C Vercel, deploys and DNS · 
 | C10 | Old backup project did not match what was live | backup taken from an older commit | copy the live page exactly to a fresh project before changes | back up from the live deployment, verify it | [16](16-growth.md) |
 | C11 | Cron never runs | cron registers only on deploy | check project → Cron Jobs after deploy | include in the deploy checklist | [14](14-backend.md) |
 | C12 | A page that needs the database returns a baked-in 404 in production (BehaveBridge `/setup`) | Next prerendered it at build time, when no database or key was reachable | `await connection()` from `next/server` at the top of the page | any page that reads env secrets or the DB at request time calls `connection()`; e2e hits it on the production build | [13](13-fullstack-frontend.md) |
+| C13 | Vercel Hobby rejects a CLI or CI deploy with an author error | Hobby only deploys commits authored by the account owner; the projects aren't Git-linked | `rm -rf .git` after `vercel build`, then `vercel deploy --prebuilt` | Decide Git-linking at setup; on Hobby, deploy prebuilt from CI | [05](05-rebuild-from-archive.md) |
+| C14 | A project's main `*.vercel.app` address is public although Deployment Protection is on | Hobby's Standard Protection covers per-deploy URLs only | Remove the main domains, or put an app-level passcode gate in front of every app | Assume the main domain is public on Hobby | [05](05-rebuild-from-archive.md) |
+| C15 | A deploy fails because of a cron schedule | Hobby crons may run at most once a day | Daily cron in `vercel.json`; anything more frequent comes from an external pinger hitting a secret-protected route on a fixed alias | Check plan limits before promising a schedule | [05](05-rebuild-from-archive.md) |
+| C16 | A monorepo app builds locally but fails to install on Vercel | The project installs from the app folder | Install command `cd ../.. && npm ci` | Set it when the project is created | [05](05-rebuild-from-archive.md) |
 
 ## D. Email, OAuth and third-party consoles
 
@@ -97,6 +101,7 @@ Groups: A access and tokens · B git and GitHub · C Vercel, deploys and DNS · 
 | E22 | A presigned upload accepted any content type | the S3 presigner does not sign `Content-Type` unless told to | pass `signableHeaders: new Set(['content-type'])`, then HEAD the object and delete it if the type or size is wrong | a unit test asserts `X-Amz-SignedHeaders` contains `content-type` | [14](14-backend.md), [20](20-security.md) |
 | E23 | A second staging portal needs its own Vercel verification record | Vercel verifies each project's domain with a TXT on `_vercel` | append the new value (Hostinger `overwrite: false`) beside the existing one; never replace; count records before and after | `tools/deploy/portal-staging.mts --dns` only adds, refuses to touch a differing CNAME | [03](03-services-setup.md) |
 | E24 | A settings save that rewrites a table took ~20 seconds and looked broken | it updated one row per round trip — fine with a dozen seeded rows, not with sixty, and worse every week | one statement per batch (a `case id when … then …` over the ids), 200 rows at a time | any write that loops over a table needs a batch from the start; the growth that breaks it is normal growth, and an e2e timeout is how you find out | [14](14-backend.md) |
+| E25 | CI broke after agents ran migrations | Agents migrated the shared `ci`/`staging` branches before the code using the migration was pushed | Give workflow agents their own `agents` branch; migrate shared branches only at commit time | Put the branch rule in the shared agent brief | [05](05-rebuild-from-archive.md) |
 
 ## F. Tests and CI
 
@@ -150,6 +155,9 @@ Groups: A access and tokens · B git and GitHub · C Vercel, deploys and DNS · 
 | F46 | Uploading a large spreadsheet to a server action failed with a body-size error | Next.js server actions cap the request body at 1 MB by default | `experimental: { serverActions: { bodySizeLimit: "10mb" } }` in `next.config`, and send one file per call | size the limit for one file, not for a batch; batch in the browser | [14](14-backend.md) |
 | F47 | `turbo run test` failed with a vitest child-process "unexpected exit" while each package passed on its own | several packages each start an in-process Postgres (PGlite) at once and the machine runs out | `turbo run test --concurrency=1` as the root test script | run the root script, not just the package you touched, before committing | [21](21-testing.md) |
 | F48 | The whole test run failed on a package with no tests | `vitest run` exits 1 when it finds no test files | `vitest run --passWithNoTests` in that package's script | add it when creating a package, before its first test exists | [21](21-testing.md) |
+| F49 | Builds fail intermittently on GitHub runners fetching fonts | `next/font/google` downloads at build time | Bundle the fonts with `next/font/local` (OFL files via fontsource) | Never fetch fonts at build time in CI | [05](05-rebuild-from-archive.md) |
+| F50 | Unit tests time out only in CI | Vitest's 5 s default is too short on shared runners | 60 s test timeout when `CI` is set | Set the CI timeout in the shared Vitest config from day one | [05](05-rebuild-from-archive.md) |
+| F51 | A 200+ test Playwright run stalls overnight | The Mac slept mid-run | Keep the machine awake for long suites; run them single-worker on dedicated ports | Start long suites only with sleep prevention on | [05](05-rebuild-from-archive.md) |
 
 ## G. Windows, shell and tooling
 
@@ -342,6 +350,8 @@ Groups: A access and tokens · B git and GitHub · C Vercel, deploys and DNS · 
 | O13 | Review defects after green tests (13, then 6, then 4) | tests cover behaviour, not correctness of numbers or leftovers | adversarial review → fix → second review | always review money and admin rounds | [02](02-how-we-work.md) |
 | O14 | Dismissed delivery question interpreted as "go" | — | Claude waited for the next instruction | a dismissed question means stop | [02](02-how-we-work.md) |
 | O15 | Money written in cents confused you | ¢ notation | dollars with decimals everywhere; report converted | standing rule | [16](16-growth.md) |
+| O16 | A new Claude account can't continue the build | Memory, connectors and permissions don't move between accounts | A restart section in `HANDOFF.md`, plus briefs, workflow scripts, agent reports, memory copies and a transcript in the project; unmerged work pushed to `wip/<batch>` | Hand over before the limit, not after | [05](05-rebuild-from-archive.md) |
+| O17 | "Free" turned out to cost money or block CI | A 10-minute GitHub Actions schedule on a private repo exceeds the 2,000 free minutes | Do the run-count arithmetic before recommending; use an external pinger | Check quotas for every scheduled job | [05](05-rebuild-from-archive.md) |
 
 ## P. Landing page and performance
 
