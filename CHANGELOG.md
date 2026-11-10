@@ -6,7 +6,7 @@ Add an entry after every batch until the project is finalised (payments live, pr
 
 - `05-rebuild-from-archive.md` Step 6: one plan approval and then no "next batch?" questions; separate the environment section so a local-to-online pivot rewrites one part; owner-run clipboard one-liners for keys; a database branch for agents; a handover pack for Claude account switches; per-account permission differences; free-tier arithmetic before recommending a scheduler.
 - Step 6 item 8: "build fast, verify once" — batches back to back with quick checks only, then one CI-driven verification phase; the dependency batch is verified first.
-- `40-pitfalls-master-list.md`: C13–C16 (Vercel Hobby: author-blocked deploys, public main domains, daily-only crons, monorepo install command), E25 (agents migrating shared branches), F49–F51 (build-time Google Fonts, CI test timeouts, sleeping Macs), O16–O17 (account handovers, "free" schedules).
+- `40-pitfalls-master-list.md`: C13–C16 (Vercel Hobby: author-blocked deploys, public main domains, daily-only crons, monorepo install command), E25 (agents migrating shared branches), F49–F51 (build-time Google Fonts, CI test timeouts, sleeping Macs), O16–O17 (account handovers, "free" schedules), F52 (CI job timeout outgrown by the suite).
 
 ## 2026-11-06 — Archive rebuild: Gates 1 and 2
 

@@ -158,6 +158,7 @@ Groups: A access and tokens · B git and GitHub · C Vercel, deploys and DNS · 
 | F49 | Builds fail intermittently on GitHub runners fetching fonts | `next/font/google` downloads at build time | Bundle the fonts with `next/font/local` (OFL files via fontsource) | Never fetch fonts at build time in CI | [05](05-rebuild-from-archive.md) |
 | F50 | Unit tests time out only in CI | Vitest's 5 s default is too short on shared runners | 60 s test timeout when `CI` is set | Set the CI timeout in the shared Vitest config from day one | [05](05-rebuild-from-archive.md) |
 | F51 | A 200+ test Playwright run stalls overnight | The Mac slept mid-run | Keep the machine awake for long suites; run them single-worker on dedicated ports | Start long suites only with sleep prevention on | [05](05-rebuild-from-archive.md) |
+| F52 | A CI run shows "failed" with no failing test | The test job hit its `timeout-minutes` and was cancelled once the suite grew (about 40 new specs pushed it past 25 minutes) | Raise the job timeout (60 minutes), or shard the suite | When a batch adds e2e specs, check the last CI duration against the timeout | [21](21-testing.md) |
 
 ## G. Windows, shell and tooling
 
